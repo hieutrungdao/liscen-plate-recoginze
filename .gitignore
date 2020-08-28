@@ -39,4 +39,5 @@ ENV/
 # dot vscode
 .vscode/
 
-# cache *.pyc
+# cache 
+*.pyc
