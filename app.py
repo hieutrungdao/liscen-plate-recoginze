@@ -159,8 +159,10 @@ def detect(save_img=False):
 
             # Save results (image with detections)
             if save_img:
-                cv2.imwrite(save_path, plate['img'])
-                pass
+                try:
+                    cv2.imwrite(save_path, plate['img'])
+                except:
+                    cv2.imwrite(save_path, im0s)
 
     if save_img:
         print('Results saved to %s' % Path(out))
