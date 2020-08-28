@@ -1,0 +1,40 @@
+# Neural Network weights -----------------------------------------------------------------------------------------------
+*.weights
+*.ckpt
+*.pt
+*.onnx
+*.mlmodel
+*.torchscript
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# dotenv
+.env
+
+# virtualenv
+.venv
+venv/
+ENV/
+
+# dot vscode
+.vscode/
