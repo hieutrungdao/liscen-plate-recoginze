@@ -117,6 +117,7 @@ def detect(save_img=False):
                     if img.ndimension() == 3:
                         img = img.unsqueeze(0)
                     # Inference
+
                     pred = model_char(img, augment=opt.augment)[0]
                     # Apply NMS
                     pred = non_max_suppression(pred, opt.conf_thres, opt.iou_thres, agnostic=opt.agnostic_nms)
@@ -144,6 +145,7 @@ def detect(save_img=False):
                             string_output = ''
                             for i, v in enumerate(char_list):
                                 input = transform_char(v['img'])
+                                input = input.to(device)
                                 classify_output = classify_model(input)
                                 _, predicted = torch.max(classify_output.data, 1)
                                 predicted = get_key(int(predicted.numpy()))
