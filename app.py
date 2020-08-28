@@ -13,6 +13,7 @@ import numpy as np
 from numpy import random
 
 from models.experimental import attempt_load
+from utils.datasets import LoadImages
 from utils.general import (
     check_img_size, non_max_suppression, scale_coords, plot_one_box, set_logging)
 from utils.torch_utils import select_device, load_classifier, time_synchronized
@@ -52,6 +53,9 @@ def detect(save_img=False):
         model_plate.half()  # to FP16
         model_char.half()  # to FP16
 
+    save_img = True
+    dataset = LoadImages(source, img_size=imgsz)
+
     # Get names and colors
     names1 = model_plate.module.names if hasattr(model_plate, 'module') else model_plate.names
     colors1 = [[random.randint(0, 255) for _ in range(3)] for _ in range(len(names1))]
@@ -84,10 +88,7 @@ def detect(save_img=False):
 
         # Process detections
         for i, det in enumerate(pred):  # detections per image
-            if webcam:  # batch_size >= 1
-                p, s, im0 = path[i], '%g: ' % i, im0s[i].copy()
-            else:
-                p, s, im0 = path, '', im0s
+            p, s, im0 = path, '', im0s
 
             save_path = str(Path(out) / Path(p).name)
             if det is not None and len(det):
