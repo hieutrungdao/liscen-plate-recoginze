@@ -148,7 +148,7 @@ def detect(save_img=False):
                                 input = input.to(device)
                                 classify_output = classify_model(input)
                                 _, predicted = torch.max(classify_output.data, 1)
-                                predicted = get_key(int(predicted.numpy()))
+                                predicted = get_key(int(predicted.cpu().numpy()))
                                 string_output += str(predicted)
                     
                     # Draw retangle and label plate
